@@ -76,5 +76,5 @@ while True:
     if input("Do you want to play a game of Blackjack? Type 'y' or 'n':")== 'y':
         play()
     else:
-        print("Bye.")
+        print("Bye...")
         break
