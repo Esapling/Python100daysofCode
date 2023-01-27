@@ -64,14 +64,16 @@ def play():
         print("Blackjack !! You Lose ")
     elif player_score == 21:
         print("Blackjack You win")
-    elif (dealer_score < 21 and dealer_score > player_score) or (player_score > 21 and dealer_score < 21)  or (player_score > dealer_score and player_score > 21):
+    elif player_score > 21:
         print("You lose!")
-    elif (player_score < 21 and dealer_score > 21) or (player_score > dealer_score and player_score < 21) or (dealer_score > 21 and dealer_score > player_score):
+    elif dealer_score > 21:
         print("You win")
     elif player_score == dealer_score:
         print("Draw")
+    elif player_score > dealer_score:
+        print("You win")
     else:
-        print("No more cases left :(")
+        print("You lose :(")
 while True: 
     if input("Do you want to play a game of Blackjack? Type 'y' or 'n':")== 'y':
         play()
