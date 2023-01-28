@@ -20,7 +20,7 @@ def compare(index1, index2):
         print("True! You got this.")
         return True
     else:
-        print("Sorry!")
+        print("Sorry! That is not true")
         return False
 def play():
     """_summary_
@@ -35,12 +35,13 @@ def play():
         second = random.randint(0, total_len - 1)
         if first == second:
             continue  # dont compare the same thing with itself
+        print(f"Current score is {total_correct_answ}")
         print(f"Compare A: ",end="")#prevent passing into next line 
         print_info(first)
         
         print(art.vs)
         
-        print(f"Compare B: ",end="") 
+        print(f"Against B: ",end="") 
         print_info(second)
         if compare(first, second) == True:
             total_correct_answ +=1
