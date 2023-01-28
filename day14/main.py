@@ -7,32 +7,25 @@ print(art.logo)
 total_len = len(data)
 
 
-def print_info(index):
-    print(f"{data[index]['name']}, {data[index]['description']}, from {data[index]['country']}")
+def print_info(dict_item):
+    print(f"{dict_item['name']}, {dict_item['description']}, from {dict_item['country']}")
     
-def compare(index1, index2):
-    if data[index1]['follower_count'] > data[index2]['follower_count']:
-        true_ans = 'A'
+def compare(first, second, ans):
+    """checks the user answer and returns if it is true , false otherwise """
+    if first['follower_count'] > second['follower_count']:
+        return ans == 'A'
     else:
-        true_ans = 'B'
-    ans = input("Who has more followers? Type 'A' or 'B': ")        
-    if ans == true_ans:
-        print("True! You got this.")
-        return True
-    else:
-        print("Sorry! That is not true")
-        return False
+        return ans == 'B'
 def play():
     """_summary_
         starts the game and returns the total number of correct anserws 
     Returns:
         _type_: _int_
     """
-    result = True
     total_correct_answ = 0
-    while result:
-        first = random.randint(0, total_len - 1)
-        second = random.randint(0, total_len - 1)
+    while True:
+        first = random.choice(data)
+        second = random.choice(data)
         if first == second:
             continue  # dont compare the same thing with itself
         print(f"Current score is {total_correct_answ}")
@@ -43,11 +36,15 @@ def play():
         
         print(f"Against B: ",end="") 
         print_info(second)
-        if compare(first, second) == True:
+        
+        ans = input("Who has more followers? Type 'A' or 'B': ")        
+        if compare(first, second, ans) == True:
+            print("True , Well Done!.")
             total_correct_answ +=1
         else:
+            print("Sorry! That is not true")
             return total_correct_answ
-        
+
        
 while True:
     print("Welcome to higher or Lower game.")
@@ -56,5 +53,5 @@ while True:
     if input("Please Type 'y' to play again ,'n' otherwise: ") == 'n':
         print("Bye.")
         break
-    
-    
+    else:
+        continue
