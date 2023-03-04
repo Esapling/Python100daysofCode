@@ -1,4 +1,0 @@
-There are some bugs in the code which I couldnt understand and couldnt find a solution
-and I really dont have enough time for fixing them right now , hope to get back and solve them sometime 
-
-03.03.23 00:04 

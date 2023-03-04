@@ -1,7 +1,7 @@
 from turtle import Turtle
 
 LENGTH = 1
-WIDTH = 5
+WIDTH = 3.7
 
 class Player(Turtle):
     def __init__(self, position):

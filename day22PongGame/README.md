@@ -9,7 +9,7 @@ In the first version I was using the "onkey" method with Screen().listen() metho
 my turtle's listens to my press from the keyboard and acts the input function that I give 
 but when I press arrow keys to move it I needed to press the keys repeatedly so that it continues to move
 now instead I am using the "onkeypress" method which you dont need to press repeatedly, 
-just press when you want it to stop 
+just press untill you want it to stop 
 
 And second important problem was ,when the ball hits the paddles it was bouncing repeatedly since
 the if statements still valid because it was still in those limited area,  this might not be the best solution but
