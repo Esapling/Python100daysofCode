@@ -2,6 +2,7 @@ import tkinter
 import file_opt
 import random
 from tkinter import messagebox
+import pyperclip
 
 # some inital constants
 BG_COLOR_1 = "#3a5158"
@@ -14,6 +15,47 @@ WIDTH_ENTRY = 80
 WIDTH_LABEL = 14
 HEIGHT_LABEL = 3
 
+# functions
+def reset_entry_boxes():
+    user_entry.delete(first=0,last="end")
+    password_entry.delete(first=0, last="end")
+    web_entry.delete(first=0, last="end")
+    
+def ErrorPopUp(string):
+    new_win = tkinter.Toplevel()
+    new_win.geometry("200x120")
+    new_win.title("Opps")
+    tkinter.Label(new_win, text="Please Fill the all entries!!!" , font=FONT).pack()
+
+def add_new_password():
+    m_user = user_entry.get()
+    m_web_name = web_entry.get()
+    m_password = password_entry.get()
+    if m_user== "" or m_web_name == "" or m_password == "":
+        ErrorPopUp()
+    else:
+        answer = messagebox.askokcancel(title= web_entry, message=f"Details entered: {m_web_name}"
+                           f"{m_user}, {m_password}, Are sure you want to save ?")
+        if answer:              
+            file_opt.write(web_site=m_web_name, user_name=m_user, string_password= m_password)
+            messagebox.showinfo(title="Done",message="Data saved successfully!!")
+            reset_entry_boxes()
+        else:
+            reset_entry_boxes()
+    
+def generate_password():
+    # if user doesnt like the pass and cliks again delete the text entry
+    password_entry.delete(first=0, last="end")
+    my_pass = ""
+    for _ in range(10):
+        index = random.randint(33,127)
+        pass_char = chr(index)
+        my_pass += pass_char 
+    password_entry.insert(0, string=my_pass)
+    pyperclip.copy(my_pass)
+    
+    
+
 
 #window configurations
 window = tkinter.Tk()
@@ -25,7 +67,7 @@ window.configure(background=BG_COLOR_1, padx=20, pady=20)
 
 # setting up canvas background photo grid 0-2
 bg_canvas = tkinter.Canvas(width=200, height=200, highlightthickness=0 )
-bg_image = tkinter.PhotoImage(file="img/logo.png")
+bg_image = tkinter.PhotoImage(file="img/lock2.png")
 bg_canvas.create_image(100, 100, image= bg_image)
 bg_canvas.grid(row=0, column=1)
 
@@ -68,43 +110,6 @@ password_entry.configure(highlightthickness=3, highlightcolor=BG_COLOR_4)
 password_entry.grid(row=3, column=1)
 
 
-def reset_entry_boxes():
-    user_entry.delete(first=0,last="end")
-    password_entry.delete(first=0, last="end")
-    web_entry.delete(first=0, last="end")
-    
-def ErrorPopUp(string):
-    new_win = tkinter.Toplevel()
-    new_win.geometry("200x120")
-    new_win.title("Opps")
-    tkinter.Label(new_win, text="Please Fill the all entries!!!" , font=FONT).pack()
-
-def add_new_password():
-    m_user = user_entry.get()
-    m_web_name = web_entry.get()
-    m_password = password_entry.get()
-    if m_user== "" or m_web_name == "" or m_password == "":
-        ErrorPopUp()
-    else:
-        answer = messagebox.askokcancel(title= web_entry, message=f"Details entered: {m_web_name}"
-                           f"{m_user}, {m_password}, Are sure you want to save ?")
-        if answer:              
-            file_opt.write(web_site=m_web_name, user_name=m_user, string_password= m_password)
-            messagebox.showinfo(title="Done",message="Data saved successfully!!")
-            reset_entry_boxes()
-        else:
-            reset_entry_boxes()
-    
-def generate_password():
-    # if user doesnt like the pass and cliks again delete the text entry
-    password_entry.delete(first=0, last="end")
-    my_pass = ""
-    for _ in range(10):
-        index = random.randint(33,127)
-        pass_char = chr(index)
-        my_pass += pass_char 
-    password_entry.insert(0, string=my_pass)
-    
     
 #button generate
 generate_btn = tkinter.Button(width=18, height=2, text="GENERATE PASSWORD", font=("Arial", 9, "bold"), bg=BG_COLOR_2)

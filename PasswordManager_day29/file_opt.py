@@ -1,4 +1,5 @@
-#
+
+
 def write(web_site, user_name,string_password):
     password_file = open("my_passwords.txt", "a")
     password_file.write(web_site + " | ")
