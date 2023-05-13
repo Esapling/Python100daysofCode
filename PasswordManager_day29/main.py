@@ -1,6 +1,7 @@
 import tkinter
 import file_opt
 import random
+from tkinter import messagebox
 
 # some inital constants
 BG_COLOR_1 = "#3a5158"
@@ -72,21 +73,27 @@ def reset_entry_boxes():
     password_entry.delete(first=0, last="end")
     web_entry.delete(first=0, last="end")
     
-def errorPopUp():
+def ErrorPopUp(string):
     new_win = tkinter.Toplevel()
     new_win.geometry("200x120")
     new_win.title("Opps")
     tkinter.Label(new_win, text="Please Fill the all entries!!!" , font=FONT).pack()
 
 def add_new_password():
-    user = user_entry.get()
-    web_name = web_entry.get()
+    m_user = user_entry.get()
+    m_web_name = web_entry.get()
     m_password = password_entry.get()
-    if user== "" or web_name == "" or m_password == "":
-        errorPopUp()
+    if m_user== "" or m_web_name == "" or m_password == "":
+        ErrorPopUp()
     else:
-        file_opt.write(web_site=web_name, user_name=user, string_password= m_password)
-        reset_entry_boxes()
+        answer = messagebox.askokcancel(title= web_entry, message=f"Details entered: {m_web_name}"
+                           f"{m_user}, {m_password}, Are sure you want to save ?")
+        if answer:              
+            file_opt.write(web_site=m_web_name, user_name=m_user, string_password= m_password)
+            messagebox.showinfo(title="Done",message="Data saved successfully!!")
+            reset_entry_boxes()
+        else:
+            reset_entry_boxes()
     
 def generate_password():
     # if user doesnt like the pass and cliks again delete the text entry
@@ -98,7 +105,6 @@ def generate_password():
         my_pass += pass_char 
     password_entry.insert(0, string=my_pass)
     
-
     
 #button generate
 generate_btn = tkinter.Button(width=18, height=2, text="GENERATE PASSWORD", font=("Arial", 9, "bold"), bg=BG_COLOR_2)
