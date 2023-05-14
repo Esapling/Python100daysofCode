@@ -20,6 +20,8 @@ def reset_entry_boxes():
     user_entry.delete(first=0,last="end")
     password_entry.delete(first=0, last="end")
     web_entry.delete(first=0, last="end")
+    user_entry.insert(0,string="@gmail.com")
+    
     
 def ErrorPopUp(string):
     new_win = tkinter.Toplevel()
@@ -34,8 +36,8 @@ def add_new_password():
     if m_user== "" or m_web_name == "" or m_password == "":
         ErrorPopUp()
     else:
-        answer = messagebox.askokcancel(title= web_entry, message=f"Details entered: {m_web_name}"
-                           f"{m_user}, {m_password}, Are sure you want to save ?")
+        answer = messagebox.askokcancel(title= web_entry, message=f"Details entered: Website: {m_web_name}"
+                           f" Username: {m_user}\nPassword: {m_password}\n Are sure you want to save ?")
         if answer:              
             file_opt.write(web_site=m_web_name, user_name=m_user, string_password= m_password)
             messagebox.showinfo(title="Done",message="Data saved successfully!!")
@@ -47,7 +49,7 @@ def generate_password():
     # if user doesnt like the pass and cliks again delete the text entry
     password_entry.delete(first=0, last="end")
     my_pass = ""
-    for _ in range(10):
+    for _ in range(15):
         index = random.randint(33,127)
         pass_char = chr(index)
         my_pass += pass_char 
@@ -89,12 +91,11 @@ user_name_label = tkinter.Label()
 user_name_label.config(borderwidth=0, text="Username/Email", width=WIDTH_LABEL, height=HEIGHT_LABEL, bg=BG_COLOR_1,font=FONT)
 user_name_label.grid(row=2, column=0)
 
-
 #user_name entry
 user_entry = tkinter.Entry(width=WIDTH_ENTRY, borderwidth=2)
 user_entry.configure(highlightthickness=3, highlightcolor=BG_COLOR_4)
 user_entry.grid(row=2, column=1, columnspan=2)
-
+user_entry.insert(0,string="@gmail.com")
 
 
 
