@@ -1,0 +1,8 @@
+# created by virtualenv automatically
+*Scripts/
+*images/
+*Lib/
+*data/
+*.idea/
+*.cfg
+*.txt
