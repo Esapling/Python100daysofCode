@@ -43,9 +43,9 @@ the_day_before = str(the_day_before)
 data_yesterday = data['Time Series (Daily)'][yesterday]
 data_the_day_before = data['Time Series (Daily)'][the_day_before]
 
-change_in_price = float(data_yesterday['4. close']) - float(data_the_day_before['1. open'])
+change_in_price = float(data_yesterday['4. close']) - float(data_the_day_before['4. close'])
 
-print(f"Change price is {change_in_price} , last close {data_yesterday['4. close']} and opening {data_the_day_before['1. open']}")
+print(f"Change price is {change_in_price} , last close {data_yesterday['4. close']} and closing price in the day before {data_the_day_before['4. close']}")
 
 
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
