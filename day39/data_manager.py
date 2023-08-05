@@ -4,7 +4,7 @@ from requests.auth import HTTPBasicAuth
 
 
 MAX_INT = 10000000
-sheety_user_name ="98869ea06301cb318c558a37a93f2d52"
+sheety_user_name =os.environ['SHEETY_USER_NAME']
 #for each project in sheety you need to set up your authentication settings 
 #following keys will not be the same as before if you dont set them as they were
 m_user_name = os.environ['AUTH_SHEETY_USER_NAME']
