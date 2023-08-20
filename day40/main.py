@@ -1,18 +1,11 @@
-from data_manager import DataManager
+from flight_data import FlightData
+from fligh_search import FlightSearch
+
+def main():
+    m_flightData = FlightData()
+    m_flightSearch = FlightSearch(m_flightData)
+    m_flightSearch.searchCheapFlights()
 
 
-
-user_name = input("Welcome, please enter your first name: ")
-user_lastname = input("Your last name: ")
-user_email = input("Enter your email: ")
-
-user = {
-    "name":user_name,
-    "last_name":user_lastname,
-    "email":user_email
-}
-
-data_manager = DataManager()
-
-data_manager.addUserToSheet(user)
-
+if __name__ == '__main__':
+    main()
