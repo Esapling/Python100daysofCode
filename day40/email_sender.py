@@ -20,4 +20,4 @@ class SendEmail:
             for user in self.users:
                 connection.login(user=self.sender, password= self.sender_password)
                 connection.sendmail(from_addr=self.sender, to_addrs=user , msg=f"Subject: Come QUICKKK\n\n{message_to_send}")
-                print("Message successfully sended")
+                print(f"Email successfully sended to the user {user['name']}")

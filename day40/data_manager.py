@@ -1,5 +1,6 @@
 import requests, os
 from requests.auth import HTTPBasicAuth
+
 """ 
     example sheet structure
 City	IATA Code	Lowest Price
@@ -104,3 +105,20 @@ class DataManager(Exception):
         self.data = response.json()
         return self.data['users']    
     
+    def setNewHeading(self, in_city):
+        sheet_name = "prices"
+        sheety_end_point = f"https://api.sheety.co/{self.sheety_user_name}/{self.project_name}/{sheet_name}"
+        headers_sheety = {  
+            "Content-Type": "application/json"
+        }
+        row_body  ={
+            "user" : {
+                "city": in_city['city'],
+                "iataCode": in_city['iataCode'],
+                "lowestPrice": in_city['lowestPrice']
+            }
+        }
+        post_response = requests.post(url=sheety_end_point, auth=self.authenticate, json=row_body, headers=headers_sheety)
+        #note: here the true parameter for data is 'json' not 'data'
+        post_response.raise_for_status()
+        print("You have been successfully registered, Cheap Flightss")
