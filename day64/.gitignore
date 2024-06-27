@@ -1,5 +1,0 @@
-*instance/
-*__pycache__/
-*.css
-!search.css
-*templates/base.html
